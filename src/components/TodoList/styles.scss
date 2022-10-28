@@ -1,0 +1,11 @@
+#taskBoard{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 2.5rem;
+    gap: 24px;
+
+    margin: auto;
+    width: 736px;
+}
