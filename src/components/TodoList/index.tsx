@@ -20,7 +20,6 @@ export function TodoList({todoList, updateList}: TodoListType){
     return (
         <div id="taskBoard">
             <TaskCounter />
-            {/* <HasNoTasks /> */}
             <div id="tasks" >
                 {todoList.length ? 
                     todoList.map(todo => (

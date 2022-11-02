@@ -3,6 +3,8 @@ import * as Checkbox from '@radix-ui/react-checkbox';
 import { Trash } from "phosphor-react"
 import "./styles.scss"
 import { todoRemoveByList } from "../../storage/todo/todoRemoveByList";
+import { useState } from "react";
+import { todoModifyingByList } from "../../storage/todo/todoModifyingByList";
 
 type todoList = {
     id: string
@@ -18,17 +20,27 @@ export function Task({id, todo, done, updateList}: todoList){
         updateList()
     }
 
+    function handleCheckedChange(){
+        if (done) {
+            todoModifyingByList(id, done)
+            updateList()
+        }else{
+            todoModifyingByList(id, done)
+            updateList()
+        }
+    }
+
     return (
-        <div id="taskContainer">
+        <div className="taskContainer">
             <div>
-                <Checkbox.Root id='checkboxRoot' checked={done}>
-                    <Checkbox.Indicator id='CheckboxIndicator'>
+                <Checkbox.Root className='checkboxRoot' checked={done} onCheckedChange={handleCheckedChange}>
+                    <Checkbox.Indicator>
                         <Check weight="bold" />
                     </Checkbox.Indicator>
                 </Checkbox.Root>
-                <div id="task">{todo}</div>
+                <div className="task"style={done ? {textDecorationLine: "line-through", color: "var(--gray-300)"} : {textDecorationLine: "none"}}>{todo}</div>
             </div>
-            <button id="deleteTask" onClick={handleRemoveTodoByList}><Trash size={24} /></button>
+            <button className="deleteTask" onClick={handleRemoveTodoByList}><Trash size={24} /></button>
         </div>
     )
 }
